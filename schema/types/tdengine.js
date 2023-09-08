@@ -1,4 +1,4 @@
-import { scalarType, enumType, objectType } from 'nexus'
+import { scalarType } from 'nexus'
 
 export const Timestamp = scalarType({
   name: 'Timestamp',

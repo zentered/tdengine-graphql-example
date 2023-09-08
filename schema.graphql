@@ -3,7 +3,9 @@
 
 
 type Query {
-  ok: Boolean!
+  latestMovement(mmsi: String): Vessel!
+  latestMovements: [VesselMovement!]!
+  vessels(mmsi: String): [Vessel!]!
 }
 
 """TDEngine Timestamp as Date"""
@@ -11,3 +13,21 @@ scalar TDDate
 
 """TDEngine Timestamp"""
 scalar Timestamp
+
+type Vessel {
+  imo: String
+  mmsi: String!
+  movement: VesselMovement!
+  name: String!
+}
+
+type VesselMovement {
+  heading: Float!
+  latitude: Float!
+  longitude: Float!
+  mmsi: String!
+  name: String!
+  nav_status: Int!
+  speed: Float!
+  ts: Timestamp!
+}

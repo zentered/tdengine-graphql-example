@@ -53,6 +53,22 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Query: {};
+  Vessel: { // root type
+    imo?: string | null; // String
+    mmsi: string; // String!
+    movement: NexusGenRootTypes['VesselMovement']; // VesselMovement!
+    name: string; // String!
+  }
+  VesselMovement: { // root type
+    heading: number; // Float!
+    latitude: number; // Float!
+    longitude: number; // Float!
+    mmsi: string; // String!
+    name: string; // String!
+    nav_status: number; // Int!
+    speed: number; // Float!
+    ts: NexusGenScalars['Timestamp']; // Timestamp!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -67,17 +83,61 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Query: { // field return type
-    ok: boolean; // Boolean!
+    latestMovement: NexusGenRootTypes['Vessel']; // Vessel!
+    latestMovements: NexusGenRootTypes['VesselMovement'][]; // [VesselMovement!]!
+    vessels: NexusGenRootTypes['Vessel'][]; // [Vessel!]!
+  }
+  Vessel: { // field return type
+    imo: string | null; // String
+    mmsi: string; // String!
+    movement: NexusGenRootTypes['VesselMovement']; // VesselMovement!
+    name: string; // String!
+  }
+  VesselMovement: { // field return type
+    heading: number; // Float!
+    latitude: number; // Float!
+    longitude: number; // Float!
+    mmsi: string; // String!
+    name: string; // String!
+    nav_status: number; // Int!
+    speed: number; // Float!
+    ts: NexusGenScalars['Timestamp']; // Timestamp!
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Query: { // field return type name
-    ok: 'Boolean'
+    latestMovement: 'Vessel'
+    latestMovements: 'VesselMovement'
+    vessels: 'Vessel'
+  }
+  Vessel: { // field return type name
+    imo: 'String'
+    mmsi: 'String'
+    movement: 'VesselMovement'
+    name: 'String'
+  }
+  VesselMovement: { // field return type name
+    heading: 'Float'
+    latitude: 'Float'
+    longitude: 'Float'
+    mmsi: 'String'
+    name: 'String'
+    nav_status: 'Int'
+    speed: 'Float'
+    ts: 'Timestamp'
   }
 }
 
 export interface NexusGenArgTypes {
+  Query: {
+    latestMovement: { // args
+      mmsi?: string | null; // String
+    }
+    vessels: { // args
+      mmsi?: string | null; // String
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
