@@ -4,6 +4,7 @@ export const VesselMovement = objectType({
   name: 'VesselMovement',
   definition(t) {
     t.ts('ts')
+    t.tdDate('date', { resolve: (root) => root.ts })
     t.string('mmsi')
     t.string('name')
     t.float('latitude')

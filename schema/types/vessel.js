@@ -6,6 +6,6 @@ export const Vessel = objectType({
     t.string('mmsi')
     t.string('name')
     t.nullable.string('imo')
-    t.field('movement', { type: 'VesselMovement' })
+    t.list.field('movements', { type: 'VesselMovement' })
   }
 })

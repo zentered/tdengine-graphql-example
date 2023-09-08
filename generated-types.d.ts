@@ -55,19 +55,19 @@ export interface NexusGenObjects {
   Query: {};
   Vessel: { // root type
     imo?: string | null; // String
-    mmsi: string; // String!
-    movement: NexusGenRootTypes['VesselMovement']; // VesselMovement!
-    name: string; // String!
+    mmsi?: string | null; // String
+    movements?: Array<NexusGenRootTypes['VesselMovement'] | null> | null; // [VesselMovement]
+    name?: string | null; // String
   }
   VesselMovement: { // root type
-    heading: number; // Float!
-    latitude: number; // Float!
-    longitude: number; // Float!
-    mmsi: string; // String!
-    name: string; // String!
-    nav_status: number; // Int!
-    speed: number; // Float!
-    ts: NexusGenScalars['Timestamp']; // Timestamp!
+    heading?: number | null; // Float
+    latitude?: number | null; // Float
+    longitude?: number | null; // Float
+    mmsi?: string | null; // String
+    name?: string | null; // String
+    nav_status?: number | null; // Int
+    speed?: number | null; // Float
+    ts?: NexusGenScalars['Timestamp'] | null; // Timestamp
   }
 }
 
@@ -83,41 +83,41 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Query: { // field return type
-    latestMovement: NexusGenRootTypes['Vessel']; // Vessel!
-    latestMovements: NexusGenRootTypes['VesselMovement'][]; // [VesselMovement!]!
-    vessels: NexusGenRootTypes['Vessel'][]; // [Vessel!]!
+    latestMovements: Array<NexusGenRootTypes['VesselMovement'] | null> | null; // [VesselMovement]
+    vessel: NexusGenRootTypes['Vessel'] | null; // Vessel
   }
   Vessel: { // field return type
     imo: string | null; // String
-    mmsi: string; // String!
-    movement: NexusGenRootTypes['VesselMovement']; // VesselMovement!
-    name: string; // String!
+    mmsi: string | null; // String
+    movements: Array<NexusGenRootTypes['VesselMovement'] | null> | null; // [VesselMovement]
+    name: string | null; // String
   }
   VesselMovement: { // field return type
-    heading: number; // Float!
-    latitude: number; // Float!
-    longitude: number; // Float!
-    mmsi: string; // String!
-    name: string; // String!
-    nav_status: number; // Int!
-    speed: number; // Float!
-    ts: NexusGenScalars['Timestamp']; // Timestamp!
+    date: NexusGenScalars['TDDate'] | null; // TDDate
+    heading: number | null; // Float
+    latitude: number | null; // Float
+    longitude: number | null; // Float
+    mmsi: string | null; // String
+    name: string | null; // String
+    nav_status: number | null; // Int
+    speed: number | null; // Float
+    ts: NexusGenScalars['Timestamp'] | null; // Timestamp
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Query: { // field return type name
-    latestMovement: 'Vessel'
     latestMovements: 'VesselMovement'
-    vessels: 'Vessel'
+    vessel: 'Vessel'
   }
   Vessel: { // field return type name
     imo: 'String'
     mmsi: 'String'
-    movement: 'VesselMovement'
+    movements: 'VesselMovement'
     name: 'String'
   }
   VesselMovement: { // field return type name
+    date: 'TDDate'
     heading: 'Float'
     latitude: 'Float'
     longitude: 'Float'
@@ -131,10 +131,7 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Query: {
-    latestMovement: { // args
-      mmsi?: string | null; // String
-    }
-    vessels: { // args
+    vessel: { // args
       mmsi?: string | null; // String
     }
   }

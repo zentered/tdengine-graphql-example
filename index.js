@@ -9,12 +9,16 @@ import { enableGraphiQL } from './config.js'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
+const opts = {
+  logger: {
+    level: 'debug'
+  }
+}
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
-
 const { makeSchema } = nexus
-
-const fastify = Fastify()
+const fastify = Fastify(opts)
 const tdEngine = new TdEngine(fastify.log)
 
 const schema = makeSchema({
@@ -24,14 +28,10 @@ const schema = makeSchema({
       resolveType: false
     }
   },
-  nonNullDefaults: {
-    output: true
-  },
   outputs: {
     schema: join(__dirname, './schema.graphql'),
     typegen: join(__dirname, './generated-types.d.ts')
-  },
-  plugins: []
+  }
 })
 
 fastify.register(mercurius, {
