@@ -1,0 +1,27 @@
+{
+  "name": "tdengine-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file .env --watch index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@tdengine/rest": "^3.0.2",
+    "fastify": "^4.22.2",
+    "graphql": "^16.8.0",
+    "graphql-parse-fields": "^1.2.0",
+    "mercurius": "^13.1.0",
+    "nexus": "^1.3.0",
+    "tiny-invariant": "^1.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.3"
+  }
+}
